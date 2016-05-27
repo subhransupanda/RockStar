@@ -1,0 +1,42 @@
+mport java.sql.Date;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+-------------------------------
+    SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+    ------------------------------
+    Session session = sessionFactory.openSession();
+    ---------------Save-----------
+        session.beginTransaction();
+
+        Long id = (Long) session.save(emp);
+
+        session.getTransaction().commit();
+
+        session.close();
+        --------------GET--------------------
+        Employee emp = (Employee) session.get(Employee.class, 8L);
+        ---------------UPDATE----------------
+        session.beginTransaction();
+
+        Employee emp = (Employee) session.get(Employee.class, 8L);
+        emp.setLastname("Joshi");
+
+        session.update(emp);
+
+        session.getTransaction().commit();
+        session.close();
+        -------------------DELETE---------------------
+        session.beginTransaction();
+
+        Employee employee = (Employee) session.get(Employee.class, 9L);
+        session.delete(employee);
+
+        session.getTransaction().commit();
+
+        session.close();
+        ----------------------------------------
+
+
+
